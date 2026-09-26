@@ -10,9 +10,11 @@ Centralne, publiczne źródło dystrybucji aplikacji Zielonego Sanktuarium. Repo
 - **Sanctuary Distribution** jest jednym źródłem prawdy o tym, co wolno zainstalować;
 - katalog jest podpisywany lokalnym kluczem ECDSA, a artefakty są weryfikowane SHA-256 i metadanymi pakietu.
 
+GitHub Actions na lokalnym runnerze może dostarczyć jedynie niepodpisany artefakt kandydata. Release Center ponownie sprawdza jego manifest i SHA-256, wykonuje wymagany runtime oraz finalizację dokładnego commitu, a następnie lokalnie podpisuje i publikuje katalog. Sanctuary Hub nadal pobiera tylko zweryfikowane `catalog.json` i `catalog.sig`; status Actions nie jest źródłem zaufania dla instalacji.
+
 Przepływ:
 
-`repo aplikacji → build/test → wydanie → podpisany katalog → Sanctuary Distribution → Sanctuary Hub → instalacja/aktualizacja`
+`repo aplikacji → Actions na lokalnym runnerze → Release Center: weryfikacja i finalizacja → GitHub Release → podpisany katalog → Sanctuary Distribution → Sanctuary Hub → instalacja/aktualizacja`
 
 ## Kanały
 
